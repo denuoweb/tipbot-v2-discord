@@ -1,4 +1,4 @@
-# BOXY-Tip-Bot
+# CFCC-Tip-Bot-V2
 
 
 These files are intended to function as a multi-functional tipbot for BOXY Coin (BOXY).
@@ -7,7 +7,7 @@ These files are intended to function as a multi-functional tipbot for BOXY Coin 
 * discord.py installed
 * Python 3.6+
 * A MySQL database
-* The BOXY wallet w/ RPC enabled.
+* The CFCC wallet w/ RPC enabled.
 
 # Functions
 * Display general wallet information
@@ -67,16 +67,18 @@ pip install PyMySQL
 ```
 ## Clone tipbot repository
 ```
-git clone https://github.com/boyroywax/BOXYBot
+git clone https://github.com/boyroywax/tipbot-v2.git
 ```
 
 ## Configuration
 
-Configure config.json
+Configure cfcc/config.json with your Mysql database credentials, wallet RPC credentials, and discord bot token
+```
+cd tipbot-v2/cfcc/
+nano config.json
+```
 
 ## Run bot
 ```
-cd BOXYBot
-
 python3 bot.py
 ```
