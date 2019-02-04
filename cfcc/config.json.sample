@@ -1,0 +1,47 @@
+{"data": [
+    {
+        "discord": {
+            "token": "token"
+        },
+        "mysql": {
+            "db_host": "hostname",
+            "db_user": "user",
+            "db_pass": "pass",
+            "db": "database"
+        },
+        "rpc": {
+            "rpc_host": "127.0.0.1",
+            "rpc_port": "20102",
+            "rpc_user": "user",
+            "rpc_pass": "pass"
+        },
+        "logging": {
+            "print_level": 3,
+            "file": "log.txt",
+            "file_level": 3
+        },
+        "soak": {
+            "soak_max_recipients": 50,
+            "use_max_recipients": false,
+            "soak_min_received": 0.001,
+            "use_min_received": false,
+            "min_amount": 1            
+        },
+        "rain": {
+            "user_activity_required_m": 30,            
+            "min_num_messages_requred": 4,
+            "delay_between_messages_required_s": 60,
+            "min_num_words_required": 3,
+            "max_recipients": 50,
+            "use_max_recipients": false,            
+            "min_amount": 1         
+        },           
+        "txfee": 0.001,
+        "owners": ["owners discord id"],
+        "prefix": "?",
+        "description": "MyMn Tipbot",
+        "skip_cogs": [""],  
+        "explorer_url": "myexplorer.com/tx/",              
+        "currency_symbol": "MyMn"          
+    }
+]}
