@@ -42,7 +42,7 @@
             "footer_msg_text": "Users Agreement: The owner of this bot holds no responsibility for sudden loss or theft of coins stored on this system.  Use at your own risk."
         },
         "txfee": 0.00010000,
-        "owners": ["387132496669704192"],
+        "owners": ["<"discord_id_for_bot", "_admins_and_owners">"],
         "treasurer": "100000000000000010",
         "withdraw_fee": "0.01",
         "withdraw_max": "2.5",
