@@ -1,19 +1,19 @@
 {"data": [
     {
         "discord": {
-            "token": "<discord bot token>"
+            "token": "NTAxNDc4NjIwNTUyODg4MzIx.DqZ9_A.vibRU_EdeFl_jHSoJiN_ppq6jk0"
         },
         "mysql": {
             "db_host": "localhost",
-            "db_user": "<db-user>",
-            "db_pass": "<db-password>",
+            "db_user": "root",
+            "db_pass": "7rWczSKC6AFDPXBzt7M4f0blclhzB9eIFW02xJ2zGgXBO5Me",
             "db": "mysql"
         },
         "rpc": {
             "rpc_host": "127.0.0.1",
             "rpc_port": "42600",
-            "rpc_user": "<wallet_rpc_user>",
-            "rpc_pass": "<wallet_rpc_password>"
+            "rpc_user": "easyuser",
+            "rpc_pass": "easyuserpass"
         },
         "logging": {
             "print_level": 3,
@@ -42,7 +42,7 @@
             "footer_msg_text": "Users Agreement: The owner of this bot holds no responsibility for sudden loss or theft of coins stored on this system.  Use at your own risk."
         },
         "txfee": 0.00010000,
-        "owners": ["<"discord_id_for_bot", "_admins_and_owners">"],
+        "owners": ["387132496669704192"],
         "treasurer": "100000000000000010",
         "withdraw_fee": "0.01",
         "withdraw_max": "2.5",

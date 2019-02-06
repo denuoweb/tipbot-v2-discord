@@ -220,7 +220,7 @@ class Mysql:
             cursor.execute(to_exec, (str(channel.id),))
             cursor.close()
             self.__connection.commit()
-#endregion
+# endregion
 
 # region Balance
         def set_balance(self, snowflake, to, is_unconfirmed = False):

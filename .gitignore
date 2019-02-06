@@ -1,1 +1,5 @@
 .vscode/settings.json
+config.json
+cfcc/config.json
+cfcc/.DS_Store
+.DS_Store
