@@ -87,7 +87,7 @@ class Deposit:
         # List the transactions
         for txns in conf_txns:
             dep_amount = mysql.get_deposit_amount(txns)
-            await self.bot.send_message(ctx.message.author, "TXID: <https://{}{}>".format(self.explorer, str(txns)))
+            await self.bot.send_message(ctx.message.author, "TXID: <http://{}{}>".format(self.explorer, str(txns)))
             await self.bot.send_message(ctx.message.author, "Deposit amount {:.8f} {}".format(float(dep_amount), self.currency_symbol))
             dep_status = mysql.get_transaction_status_by_txid(txns)
             await self.bot.send_message(ctx.message.author, "Deposit Status {}".format(dep_status))
@@ -95,5 +95,3 @@ class Deposit:
 
 def setup(bot):
     bot.add_cog(Deposit(bot))
-
-
