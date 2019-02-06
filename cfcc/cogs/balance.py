@@ -1,19 +1,19 @@
 import discord
 from discord.ext import commands
-from utils import mysql_module, parsing, checks, rpc_module as rpc
+from utils import rpc_module, mysql_module, parsing, checks
 
 #result_set = database response with parameters from query
 #db_bal = nomenclature for result_set["balance"]
 #snowflake = snowflake from message context, identical to user in database
 #wallet_bal = nomenclature for wallet reponse
 
+rpc = rpc_module.Rpc()
 mysql = mysql_module.Mysql()
 
 
 class Balance:
 
     def __init__(self, bot):
-        self.rpc = rpc.Rpc()
         self.bot = bot
         config = parsing.parse_json('config.json')
         self.currency_symbol = config["currency_symbol"]
@@ -97,8 +97,7 @@ class Balance:
         snowflake = ctx.message.author.id
 
         # Check if user exists in db
-        if mysql.check_for_user(snowflake) is None:
-            return
+        mysql.check_for_user(snowflake)
 
         balance = mysql.get_balance(snowflake, check_update=True)
         balance_unconfirmed = mysql.get_balance(snowflake, check_unconfirmed = True)
