@@ -172,7 +172,17 @@ class Mysql:
             cursor.close()
             self.__connection.commit()
 
-        def ban_server(self, server, ban_status):
+        def add_ban_server(self, server: int):
+            ban_call = 2
+            cursor = self.__setup_cursor(
+                pymysql.cursors.DictCursor)
+            to_exec = "INSERT INTO server (server_id, enable_soak) VALUES(%s, %s)"
+            cursor.execute(
+                to_exec, (str(server), str(ban_call)))
+            cursor.close()
+            self.__connection.commit()
+
+        def ban_server(self, server: int, ban_status):
             cursor = self.__setup_cursor(
                 pymysql.cursors.DictCursor)
             # enable_soak value 2 will equal the server is banned
@@ -185,14 +195,14 @@ class Mysql:
         # check only if the server exist - does not add the server if it does not
         def check_for_server_status(self, server):
             if server is None:
-                return
+                return False
             cursor = self.__setup_cursor(
-                pymysql.cursors.DictCursor)        
-            to_exec = "SELECT server_id, enable_soak FROM server WHERE server_id LIKE %s"
-            cursor.execute(to_exec, (server))
+                pymysql.cursors.DictCursor)
+            to_exec = "SELECT enable_soak FROM server WHERE server_id = %s"
+            cursor.execute(to_exec, (str(server)))
             result_set = cursor.fetchone()
             cursor.close()
-            return result_set["enable_soak"]
+            return result_set
 
         def remove_server(self, server: discord.Server):
             cursor = self.__setup_cursor(
@@ -220,7 +230,7 @@ class Mysql:
             cursor.execute(to_exec, (str(channel.id),))
             cursor.close()
             self.__connection.commit()
-#endregion
+# endregion
 
 # region Balance
         def set_balance(self, snowflake, to, is_unconfirmed = False):
@@ -281,6 +291,8 @@ class Mysql:
             for tx in transaction_list:
                 if tx["category"] != "receive":
                     continue
+                if tx.get('generated') is True:
+                    continue
                 txid = tx["txid"]
                 amount = tx["amount"]
                 confirmations = tx["confirmations"]
@@ -327,28 +339,32 @@ class Mysql:
                 if str(ids) == snowflake:
                     continue
 
+                # first you must get the transactions of the account holder
                 transaction_list = rpc.listtransactions(str(ids), 100)
-                for tx in transaction_list:
 
-                    if (tx["category"] != "generate") and (tx["category"] != "immature") :
+                for tx in transaction_list:
+                    # if the generated tag is true this is a stake        
+                    if tx.get('generated') is None:
+                        # a stake will not affect the individual users balance
                         continue
+
                     txid = tx["txid"]
-                    amount = tx["amount"]
-                    confirmations = tx["confirmations"]
-                    mint_status = tx["category"]
+                    amount = 0.5
+                    confirmations = int(tx["confirmations"])
+                    mint_status = tx["generated"]
                     status = self.get_transaction_status_by_txid(txid)
 
                     #acreddit the staking user throughout the confirmation process
                     #the stake will take longer to confirm
                     snowflake_cur = snowflake
-                    if status == "DOESNT_EXIST" and mint_status == "generate":
+                    if status == "DOESNT_EXIST" and mint_status is True:
                         self.add_to_balance(snowflake_cur, amount)
                         self.add_deposit(snowflake_cur, amount, txid, 'CONFIRMED-STAKE')
-                    elif status == "DOESNT_EXIST" and mint_status == "immature":
+                    elif status == "DOESNT_EXIST" and confirmations < 101:
                         self.add_deposit(snowflake_cur, amount,
                                         txid, 'UNCONFIRMED-STAKE')
                         self.add_to_balance_unconfirmed(snowflake_cur, amount)
-                    elif status == "UNCONFIRMED-STAKE" and mint_status == "generate":
+                    elif status == "UNCONFIRMED-STAKE" and confirmations >= 101:
                         self.add_to_balance(snowflake_cur, amount)
                         self.remove_from_balance_unconfirmed(snowflake_cur, amount)
                         self.confirm_stake(txid)
