@@ -14,7 +14,7 @@ class Rpc:
         self.headers = {'content-type': 'application/json'}
 
     def listreceivedbyaddess(self, minconf, includeempty = False, includeWatchOnly = False):
-        payload = json.dumps({"method": "listreceivedbyaddress", "params": [minconf, includeempty], "jsonrpc": "2.0"})
+        payload = json.dumps({"method": "listreceivedbyaddress", "params": [minconf, includeempty, includeWatchOnly], "jsonrpc": "2.0"})
         response = requests.post(self.serverURL, headers=self.headers, data=payload,
                                 auth=(self.rpc_user, self.rpc_pass))
         return response.json()['result']
@@ -31,9 +31,8 @@ class Rpc:
                                 auth=(self.rpc_user, self.rpc_pass))
         return response.json()['result']
 
-    def listtransactions_all(self, count):
-        params = str("\"\"")
-        payload = json.dumps({"method": "listtransactions", "params": [params, count], "jsonrpc": "2.0"})
+    def listtransactions_all(self):
+        payload = json.dumps({"method": "listtransactions","params": [], "jsonrpc": "2.0"})
         response = requests.post(self.serverURL, headers=self.headers, data=payload,
                                 auth=(self.rpc_user, self.rpc_pass))
         return response.json()['result']
@@ -68,9 +67,34 @@ class Rpc:
                                 auth=(self.rpc_user, self.rpc_pass))
         return response.json()['result']
 
-    #Get Staking info from wallet - getstakinginfo()
+    # Get Staking info from wallet - getstakinginfo()
     def getstakinginfo(self):
         payload = json.dumps({"method": "getstakinginfo", "params": [], "jsonrpc": "2.0"})
         response = requests.get(self.serverURL, headers=self.headers, data=payload,
+                                auth=(self.rpc_user, self.rpc_pass))
+        return response.json()['result']
+
+    # Get Staking info from wallet - getstakingstatus()
+    def getstakingstatus(self):
+        payload = json.dumps({"method": "getstakingstatus", "params": [], "jsonrpc": "2.0"})
+        response = requests.post(self.serverURL, headers=self.headers, data=payload,
+                                auth=(self.rpc_user, self.rpc_pass))
+        return response.json()['result']
+
+    def getreceivedbyaddress(self, params):
+        payload = json.dumps({"method": "getreceivedbyaddress", "params": [params], "jsonrpc": "2.0"})
+        response = requests.post(self.serverURL, headers=self.headers, data=payload,
+                                auth=(self.rpc_user, self.rpc_pass))
+        return response.json()['result']
+
+    def getaccount(self, params):
+        payload = json.dumps({"method": "getaccount", "params": [params], "jsonrpc": "2.0"})
+        response = requests.post(self.serverURL, headers=self.headers, data=payload,
+                                auth=(self.rpc_user, self.rpc_pass))
+        return response.json()['result'] 
+
+    def getaccountaddress(self, params):
+        payload = json.dumps({"method": "getreceivedbyaddress", "params": [params], "jsonrpc": "2.0"})
+        response = requests.post(self.serverURL, headers=self.headers, data=payload,
                                 auth=(self.rpc_user, self.rpc_pass))
         return response.json()['result']
