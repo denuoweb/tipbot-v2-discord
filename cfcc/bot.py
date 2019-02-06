@@ -55,7 +55,7 @@ async def on_message(message):
             if message.author.id == ids:
                 Mysql.register_user(ids)
     
-   # check if the message is from a banned server
+    # check if the message is from a banned server
     if message.server is not None:
         if Mysql.check_for_server_status(message.server.id) == 2:
             return
@@ -143,7 +143,7 @@ async def shutdown(ctx):
 @bot.command(pass_context=True, hidden=True)
 @commands.check(checks.is_owner)
 async def restart(ctx):
-    """Restart the bot [ADMINS ONLY]"""
+    """Restart the bot"""
     author = str(ctx.message.author)
 
     try:

@@ -1,7 +1,7 @@
 # BOXY-Tip-Bot
 
 
-These files are intended to function as a multi-functional tipbot for CryptoFightClub Coin (CFCC).
+These files are intended to function as a multi-functional tipbot for BOXY Coin (BOXY).
 
 # Requirements
 * discord.py installed
