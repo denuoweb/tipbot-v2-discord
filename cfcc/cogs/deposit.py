@@ -57,7 +57,9 @@ class Deposit:
         """Show Your Deposit Address on this Tip Bot Service. Use the address to send coins to your account on this Tip Bot.  Formatted for easy copying on Mobile."""
         user = ctx.message.author
         # Check if user exists in db
-        mysql.check_for_user(user.id)
+        # mysql.check_for_user(user.id)
+        if mysql.check_for_user(snowflake) is None:
+            return
         user_addy = mysql.get_address(user.id)
 
         await self.bot.send_message(ctx.message.author, "Your {} ({}) Deposit Address: \n".format(self.coin_name, self.currency_symbol))

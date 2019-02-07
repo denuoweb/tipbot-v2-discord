@@ -97,7 +97,9 @@ class Balance:
         snowflake = ctx.message.author.id
 
         # Check if user exists in db
-        mysql.check_for_user(snowflake)
+        #mysql.check_for_user(snowflake)
+        if mysql.check_for_user(snowflake) is None:
+            return
 
         balance = mysql.get_balance(snowflake, check_update=True)
         balance_unconfirmed = mysql.get_balance(snowflake, check_unconfirmed = True)
