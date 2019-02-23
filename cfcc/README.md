@@ -1,13 +1,13 @@
-# BOXY-Tip-Bot
+# HTMLCOIN-Tip-Bot
 
 
-These files are intended to function as a multi-functional tipbot for BOXY Coin (BOXY).
+These files are intended to function as a multi-functional tipbot for HTMLCOIN Coin (HTML).
 
 # Requirements
 * discord.py installed
 * Python 3.6+
 * A MySQL database
-* The BOXY wallet w/ RPC enabled.
+* The HTMLOCIN wallet w/ RPC enabled.
 
 # Functions
 * Display general wallet information
@@ -67,7 +67,7 @@ pip install PyMySQL
 ```
 ## Clone tipbot repository
 ```
-git clone https://github.com/boyroywax/BOXYBot
+git clone https://github.com/denuoweb/tipbot-v2
 ```
 
 ## Configuration
@@ -76,7 +76,7 @@ Configure config.json
 
 ## Run bot
 ```
-cd BOXYBot
+cd tipbot-v2
 
 python3 bot.py
 ```
