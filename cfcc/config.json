@@ -1,7 +1,7 @@
 {"data": [
     {
         "discord": {
-            "token": "NTAxNDc4NjIwNTUyODg4MzIx.DqZ9_A.vibRU_EdeFl_jHSoJiN_ppq6jk0"
+            "token": "-- Enter token here --"
         },
         "mysql": {
             "db_host": "localhost",
@@ -51,11 +51,11 @@
         "donation": "100000000000000012",
         "game_bal": "100000000000000013",
         "prefix": "$",
-        "description": "Crypto Fight Club Coin TIP BOT",
+        "description": "Htmlcoin Tip Bot",
         "skip_cogs": ["stats", "invite"],
         "register_keyword": "register",
-        "explorer_url": "blockexplorer.cryptofightclubco.in/tx/",
-        "currency_symbol": "CFCC",
-        "currency_name": "Crypto Fight Club Coin"
+        "explorer_url": "explorer.htmlcoin.com",
+        "currency_symbol": "HTML",
+        "currency_name": "Htmlcoin"
     }
 ]}
