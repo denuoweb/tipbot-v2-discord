@@ -52,21 +52,21 @@ class Deposit:
         if ctx.message.server is not None:
             await self.bot.say("{}, I PMed you your **Deposit Address**! Make sure to double check that it is from me!".format(user.mention))
 
-    @commands.command(pass_context=True)
-    async def mobile(self, ctx):
-        """Show Your Deposit Address on this Tip Bot Service. Use the address to send coins to your account on this Tip Bot.  Formatted for easy copying on Mobile."""
-        user = ctx.message.author
+#    @commands.command(pass_context=True)
+#    async def mobile(self, ctx):
+#        """Show Your Deposit Address on this Tip Bot Service. Use the address to send coins to your account on this Tip Bot.  Formatted for easy copying on Mobile."""
+#        user = ctx.message.author
         # Check if user exists in db
         # mysql.check_for_user(user.id)
-        if mysql.check_for_user(snowflake) is None:
-            return
-        user_addy = mysql.get_address(user.id)
+#        if mysql.check_for_user(snowflake) is None:
+#            return
+#        user_addy = mysql.get_address(user.id)
 
-        await self.bot.send_message(ctx.message.author, "Your {} ({}) Deposit Address: \n".format(self.coin_name, self.currency_symbol))
-        await self.bot.send_message(ctx.message.author, "**{}**".format(user_addy))
+#        await self.bot.send_message(ctx.message.author, "Your {} ({}) Deposit Address: \n".format(self.coin_name, self.currency_symbol))
+#        await self.bot.send_message(ctx.message.author, "**{}**".format(user_addy))
 
-        if ctx.message.server is not None:
-            await self.bot.say("{}, I PMed you your **Deposit Address**! Make sure to double check that it is from me!".format(user.mention))
+#        if ctx.message.server is not None:
+#            await self.bot.say("{}, I PMed you your **Deposit Address**! Make sure to double check that it is from me!".format(user.mention))
 
     @commands.command(pass_context=True)
     async def dlist(self, ctx):
