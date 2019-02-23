@@ -1,4 +1,4 @@
-# HTMLCOIN-Tip-Bot
+# HTMLCOIN-Tip-Bot-for-Discord
 
 
 These files are intended to function as a multi-functional tipbot for HTMLCOIN Coin (HTML).
