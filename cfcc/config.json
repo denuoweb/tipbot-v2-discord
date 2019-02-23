@@ -54,7 +54,7 @@
         "description": "Htmlcoin Tip Bot",
         "skip_cogs": ["stats", "invite"],
         "register_keyword": "register",
-        "explorer_url": "explorer.htmlcoin.com",
+        "explorer_url": "explorer.htmlcoin.com/tx/",
         "currency_symbol": "HTML",
         "currency_name": "Htmlcoin"
     }
